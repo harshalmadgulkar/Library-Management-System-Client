@@ -12,6 +12,9 @@ import ForgotPassword from '@pages/ForgotPassword';
 import OTP from '@pages/OTP';
 import ResetPassword from '@pages/ResetPassword';
 import { Toaster } from 'sonner';
+import { Provider } from 'react-redux';
+
+import { store } from '@store/store';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +45,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <Toaster theme='system' richColors expand position='top-right' />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <Toaster theme='system' richColors expand position='top-right' />
+    </Provider>
   </StrictMode>,
 );
