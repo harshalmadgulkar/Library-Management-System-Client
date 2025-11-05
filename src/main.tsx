@@ -11,6 +11,7 @@ import Register from '@pages/Register';
 import ForgotPassword from '@pages/ForgotPassword';
 import OTP from '@pages/OTP';
 import ResetPassword from '@pages/ResetPassword';
+import { Toaster } from 'sonner';
 
 const router = createBrowserRouter([
   {
@@ -42,5 +43,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Toaster theme='system' richColors expand position='top-right' />
   </StrictMode>,
 );
