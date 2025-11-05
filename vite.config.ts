@@ -10,14 +10,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@root': root,
-      '@app': path.resolve(root, 'app'),
       '@assets': path.resolve(root, 'assets'),
       '@pages': path.resolve(root, 'pages'),
-      '@components': path.resolve(root, 'components'),
-      '@features': path.resolve(root, 'features'),
-      '@utils': path.resolve(root, 'utils'),
-      '@hooks': path.resolve(root, 'hooks'),
+      '@store': path.resolve(root, 'store'),
+      '@root': root,
     }
   }
 });

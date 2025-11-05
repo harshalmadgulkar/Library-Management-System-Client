@@ -30,26 +30,14 @@
     /* Alias Path */
     // "baseUrl": ".",
     "paths": {
-      "@app/*": [
-        "./src/app/*"
-      ],
       "@assets/*": [
         "./src/assets/*"
       ],
       "@pages/*": [
         "./src/pages/*"
       ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@features/*": [
-        "./src/features/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@hooks/*": [
-        "./src/hooks/*"
+      "@store/*": [
+        "./src/store/*"
       ],
       "@root/*": [
         "./src/*"
