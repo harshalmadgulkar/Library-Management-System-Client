@@ -11,6 +11,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@assets': path.resolve(root, 'assets'),
+      '@components': path.resolve(root, 'components'),
+      '@layout': path.resolve(root, 'layout'),
       '@pages': path.resolve(root, 'pages'),
       '@store': path.resolve(root, 'store'),
       '@root': root,
