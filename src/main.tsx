@@ -47,7 +47,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Toaster theme='system' richColors expand position='top-right' />
+      <Toaster theme='system' closeButton richColors expand position='top-right' />
     </Provider>
   </StrictMode>,
 );
