@@ -41,7 +41,7 @@ interface AuthState {
 }
 
 interface RegisterData {
-    username: string;
+    name: string;
     email: string;
     password: string;
 }
@@ -208,7 +208,7 @@ export const resetAuthSlice = () => (dispatch: AppDispatch) => {
 export const register = (data: RegisterData) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.registerRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/register";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/register";
         const res = await axios.post(url, data, {
             withCredentials: true,
             headers: {
@@ -230,7 +230,7 @@ export const register = (data: RegisterData) => async (dispatch: AppDispatch) =>
 export const otpVerification = (email: string, otp: string) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.otpVerificationRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/verify-otp";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/verify-otp";
         const res = await axios.post(url, { email, otp }, {
             withCredentials: true,
             headers: {
@@ -252,7 +252,7 @@ export const otpVerification = (email: string, otp: string) => async (dispatch: 
 export const login = (data: RegisterData) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.loginRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/login";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/login";
         const res = await axios.post(url, data, {
             withCredentials: true,
             headers: {
@@ -274,7 +274,7 @@ export const login = (data: RegisterData) => async (dispatch: AppDispatch) => {
 export const logout = () => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.logoutRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/logout";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/logout";
         const res = await axios.get(url, {
             withCredentials: true,
         });
@@ -294,7 +294,7 @@ export const logout = () => async (dispatch: AppDispatch) => {
 export const getUser = () => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.getUserRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/getUser";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/getUser";
         const res = await axios.get(url, {
             withCredentials: true,
         });
@@ -313,7 +313,7 @@ export const getUser = () => async (dispatch: AppDispatch) => {
 export const forgotPassword = (email: string) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.ForgotPasswordRequest());
     try {
-        const url = import.meta.env.BASE_URL + "/auth/password/forgot";
+        const url = import.meta.env.VITE_APP_API_URL + "/auth/password/forgot";
         const res = await axios.post(url, { email }, {
             withCredentials: true,
             headers: {
@@ -335,7 +335,7 @@ export const forgotPassword = (email: string) => async (dispatch: AppDispatch) =
 export const resetPassword = (data: RegisterData, token: string) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.resetPasswordRequest());
     try {
-        const url = import.meta.env.BASE_URL + `/auth/password/reset/${token}`;
+        const url = import.meta.env.VITE_APP_API_URL + `/auth/password/reset/${token}`;
         const res = await axios.put(url, data, {
             withCredentials: true,
             headers: {
@@ -357,7 +357,7 @@ export const resetPassword = (data: RegisterData, token: string) => async (dispa
 export const updatePassword = (data: RegisterData) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.updatePasswordRequest());
     try {
-        const url = import.meta.env.BASE_URL + '/auth/password/update';
+        const url = import.meta.env.VITE_APP_API_URL + '/auth/password/update';
         const res = await axios.put(url, data, {
             withCredentials: true,
             headers: {
