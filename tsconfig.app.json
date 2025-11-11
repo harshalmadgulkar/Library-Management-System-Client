@@ -42,6 +42,9 @@
       "@pages/*": [
         "./src/pages/*"
       ],
+      "@popups/*": [
+        "./src/popups/*"
+      ],
       "@store/*": [
         "./src/store/*"
       ],

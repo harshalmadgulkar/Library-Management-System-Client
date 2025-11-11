@@ -14,6 +14,7 @@ export default defineConfig({
       '@components': path.resolve(root, 'components'),
       '@layout': path.resolve(root, 'layout'),
       '@pages': path.resolve(root, 'pages'),
+      '@popups': path.resolve(root, 'popups'),
       '@store': path.resolve(root, 'store'),
       '@root': root,
     }
