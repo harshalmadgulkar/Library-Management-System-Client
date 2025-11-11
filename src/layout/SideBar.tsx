@@ -5,10 +5,12 @@ import { toast } from 'sonner';
 
 import logo_with_title from "@assets/logo-with-title.png";
 import { BookImage, BookOpenText, LayoutDashboardIcon, LogOut, Settings, SquareX, UserPlus, Users } from 'lucide-react';
+import { toggleAddNewAdminPopup } from '@store/slices/popUpSlice';
+import AddNewAdminPopup from '@popups/AddNewAdminPopup';
 
 const Sidebar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
     const dispatch = useAppDispatch();
-    // const { } = useAppSelector(state => state.popup);
+    const { addNewAdminPopup } = useAppSelector(state => state.popup);
     const {
         loading,
         error,
@@ -77,7 +79,7 @@ const Sidebar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
                                 </button>
                                 <button
                                     className='w-full py-2 font-medium bg-transparent rounded-md hover:cursor-pointer flex items-center space-x-2'
-                                // onClick={() => setSelectedComponent("Users")}
+                                    onClick={() => dispatch(toggleAddNewAdminPopup())}
                                 >
                                     <UserPlus />
                                     <span>Add New Admin</span>
@@ -125,6 +127,8 @@ const Sidebar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
                     className='h-fit absolute top-0 right-4 mt-4 block sm:hidden'
                 />
             </aside>
+
+            {addNewAdminPopup && <AddNewAdminPopup />}
         </>
     );
 };
