@@ -35,11 +35,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/password/reset/:token',
-    element: <OTP />
+    element: <ResetPassword />
   },
   {
     path: '/otp-verification/:email',
-    element: <ResetPassword />
+    element: <OTP />
   },
 ]);
 
