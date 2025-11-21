@@ -10,6 +10,7 @@ import BookManagement from "@components/BookManagement";
 import Catlog from "@components/Catlog";
 import Users from "@components/Users";
 import MyBorrowedBooks from "@components/MyBorrowedBooks";
+import Header from "@layout/Header";
 
 const Home = () => {
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -34,6 +35,9 @@ const Home = () => {
                 setIsSideBarOpen={setIsSideBarOpen}
                 setSelectedComponent={setSelectedComponent}
             />
+            <div>
+                <Header />
+            </div>
 
             {(() => {
                 switch (selectedComponent) {
@@ -65,7 +69,6 @@ const Home = () => {
 
                     default:
                         return user?.role === "User" ? (<UserDashboard />) : (<AdminDashboard />);
-                        break;
                 }
             })()}
         </div>

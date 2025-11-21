@@ -12,22 +12,19 @@ const Register = () => {
     const [password, setPassword] = useState('');
 
     const dispatch = useAppDispatch();
-    const { user, error, isAuthenticated, loading, message } = useAppSelector(state => state.auth);
+    const { error, isAuthenticated, loading, message } = useAppSelector(state => state.auth);
 
     const navigateTo = useNavigate();
 
-    const handleRegister = (e) => {
+    const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const data = new FormData();
-        data.append('name', name);
-        data.append('email', email);
-        data.append('password', password);
-
+        const data = { name, email, password };
         dispatch(register(data));
     };
 
     useEffect(() => {
         if (message) {
+            // dispatch(resetAuthSlice());
             navigateTo(`/otp-verification/${email}`);
         }
         if (error) {

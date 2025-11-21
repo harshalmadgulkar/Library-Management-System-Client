@@ -5,10 +5,16 @@ import { toast } from 'sonner';
 
 import logo_with_title from "@assets/logo-with-title.png";
 import { BookImage, BookOpenText, LayoutDashboardIcon, LogOut, Settings, SquareX, UserPlus, Users } from 'lucide-react';
-import { toggleAddNewAdminPopup } from '@store/slices/popUpSlice';
+import { toggleAddNewAdminPopup, toggleSettingPopup } from '@store/slices/popUpSlice';
 import AddNewAdminPopup from '@popups/AddNewAdminPopup';
 
-const Sidebar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
+interface SidebarProps {
+    isSideBarOpen: boolean;
+    setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedComponent: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
     const dispatch = useAppDispatch();
     const { addNewAdminPopup } = useAppSelector(state => state.popup);
     const {
@@ -103,7 +109,7 @@ const Sidebar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
                     <button
                         className='w-full py-2 font-medium bg-transparent rounded-md 
                         hover:cursor-pointer flex items-center space-x-2'
-                    // onClick={() => setSelectedComponent("Users")}
+                        onClick={() => dispatch(toggleSettingPopup())}
                     >
                         <Settings />
                         <span>Update Credentials</span>

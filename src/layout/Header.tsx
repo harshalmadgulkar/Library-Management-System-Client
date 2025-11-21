@@ -1,11 +1,11 @@
 import { toggleSettingPopup } from "@store/slices/popUpSlice";
-import { useAppDispatch, useAppSelector } from "@store/storeHooks";
+// import { useAppDispatch, useAppSelector } from "@store/storeHooks";
 import { Settings, UserIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-    const dispatch = useAppDispatch();
-    const { user } = useAppSelector(state => state.auth);
+    // const dispatch = useAppDispatch();
+    // const { user } = useAppSelector(state => state.auth);
     const [currentTime, setCurrentTime] = useState('');
     const [currentDate, setCurrentDate] = useState('');
 
@@ -26,7 +26,7 @@ const Header = () => {
             };
             const dateString = now.toLocaleDateString('en-IN', options);
             setCurrentDate(dateString);
-            console.log(dateString);
+            // console.log(dateString);
         };
 
         const intervalId = setInterval(updateDateTime, 1000);
