@@ -46,6 +46,9 @@ interface RegisterData {
     password: string;
 }
 
+type LoginData = Omit<RegisterData, "name">;
+type PasswordData = Pick<RegisterData, "password">;
+
 const initialState: AuthState = {
     loading: false,
     error: null,
@@ -249,7 +252,7 @@ export const otpVerification = (email: string, otp: string) => async (dispatch: 
     }
 };
 
-export const login = (data: RegisterData) => async (dispatch: AppDispatch) => {
+export const login = (data: LoginData) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.loginRequest());
     try {
         const url = import.meta.env.VITE_APP_API_URL + "/auth/login";
@@ -332,7 +335,7 @@ export const forgotPassword = (email: string) => async (dispatch: AppDispatch) =
     }
 };
 
-export const resetPassword = (data: RegisterData, token: string) => async (dispatch: AppDispatch) => {
+export const resetPassword = (data: PasswordData, token: string) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.resetPasswordRequest());
     try {
         const url = import.meta.env.VITE_APP_API_URL + `/auth/password/reset/${token}`;
@@ -354,7 +357,7 @@ export const resetPassword = (data: RegisterData, token: string) => async (dispa
     }
 };
 
-export const updatePassword = (data: RegisterData) => async (dispatch: AppDispatch) => {
+export const updatePassword = (data: PasswordData) => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.updatePasswordRequest());
     try {
         const url = import.meta.env.VITE_APP_API_URL + '/auth/password/update';
