@@ -18,5 +18,6 @@ export default defineConfig({
       '@store': path.resolve(root, 'store'),
       '@root': root,
     }
-  }
+  },
+  server: { port: 5175 }
 });
