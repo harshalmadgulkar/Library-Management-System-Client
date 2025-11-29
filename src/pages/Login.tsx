@@ -1,7 +1,7 @@
 import { login, resetAuthSlice } from "@store/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "@store/storeHooks";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate } from "react-router";
 
 import logo from "@assets/black-logo.png";
 import logo_with_title from "@assets/logo-with-title.png";
@@ -14,7 +14,7 @@ const Login = () => {
     const dispatch = useAppDispatch();
     const { isAuthenticated, error, loading, message } = useAppSelector(state => state.auth);
 
-    const navigateTo = useNavigate();
+    // const navigateTo = useNavigate();
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,13 +25,17 @@ const Login = () => {
     useEffect(() => {
         if (message) {
             // dispatch(resetAuthSlice());
-            navigateTo(`/otp-verification/${email}`);
+            // navigateTo(`/otp-verification/${email}`);
         }
         if (error) {
             toast.error(error);
             dispatch(resetAuthSlice());
         }
     }, [dispatch, isAuthenticated, error, loading]);
+
+    if (isAuthenticated) {
+        return <Navigate to='/' />;
+    }
 
     return (
         <div className="flex flex-col justify-center md:flex-row h-screen">
