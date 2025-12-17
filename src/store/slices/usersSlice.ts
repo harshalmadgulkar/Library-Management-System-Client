@@ -3,12 +3,43 @@ import type { AppDispatch } from "@store/store";
 import axios from "axios";
 import { toast } from "sonner";
 
-const userSlice = createSlice({
-    name: "user",
-    initialState: {
-        users: [],
-        loading: false
-    },
+interface BorrowedBook {
+    bookId: string;
+    returned: boolean;
+    bookTitle?: string;
+    borrowedDate?: Date;
+    dueDate?: Date;
+}
+
+interface Users {
+    name: string;
+    email: string;
+    password?: string;
+    role: "Admin" | "User";
+    accountVerified: boolean;
+    borrowedBooks: BorrowedBook[];
+    // avatar?: Avatar;
+    verificationCode?: number;
+    verificationCodeExpire?: Date;
+    resetPasswordToken?: string;
+    resetPasswordExpire?: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+interface UsersState {
+    loading: boolean;
+    users: Users[] | null;
+}
+
+const initialState: UsersState = {
+    users: [],
+    loading: false
+};
+
+const usersSlice = createSlice({
+    name: "users",
+    initialState,
     reducers: {
         fetchAllUsersRequest(state) {
             state.loading = true;
@@ -33,17 +64,19 @@ const userSlice = createSlice({
 });
 
 export const fetchAllUsers = () => async (dispatch: AppDispatch) => {
-    dispatch(userSlice.actions.fetchAllUsersRequest());
+    dispatch(usersSlice.actions.fetchAllUsersRequest());
     const url = import.meta.env.VITE_APP_API_URL + '/user/all';
     await axios.get(url, { withCredentials: true }).then(res => {
-        dispatch(userSlice.actions.fetchAllUsersSuccess(res.data.user));
+        console.log('users', res.data);
+
+        dispatch(usersSlice.actions.fetchAllUsersSuccess(res.data.users));
     }).catch(err => {
-        dispatch(userSlice.actions.fetchAllUsersFailed(err.response.data.message));
+        dispatch(usersSlice.actions.fetchAllUsersFailed(err.response.data.message));
     });
 };
 
 export const addNewAdmin = (data: FormData) => async (dispatch: AppDispatch) => {
-    dispatch(userSlice.actions.addNewAdminRequest());
+    dispatch(usersSlice.actions.addNewAdminRequest());
     const url = import.meta.env.VITE_APP_API_URL + '/user/add/new-admin';
     await axios.post(url, data, {
         withCredentials: true,
@@ -51,12 +84,12 @@ export const addNewAdmin = (data: FormData) => async (dispatch: AppDispatch) => 
             "Content-Type": "multipart/form-data"
         }
     }).then(res => {
-        dispatch(userSlice.actions.addNewAdminSuccess());
+        dispatch(usersSlice.actions.addNewAdminSuccess());
         toast.success(res.data.message);
     }).catch(err => {
-        userSlice.actions.addNewAdminFailed();
+        usersSlice.actions.addNewAdminFailed();
         toast.error(err.response.data.message);
     });
 };
 
-export default userSlice.reducer;
+export default usersSlice.reducer;
