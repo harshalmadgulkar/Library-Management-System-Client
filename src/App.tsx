@@ -10,7 +10,7 @@ import ResetPassword from '@pages/ResetPassword';
 import { useAppDispatch, useAppSelector } from '@store/storeHooks';
 import { useEffect } from 'react';
 import { getUser } from '@store/slices/authSlice';
-import { fetchAllUsers } from '@store/slices/userSlice';
+import { fetchAllUsers } from '@store/slices/usersSlice';
 
 const App = () => {
     const { user, isAuthenticated } = useAppSelector(state => state.auth);
@@ -20,9 +20,10 @@ const App = () => {
         dispatch(getUser);
 
         if (isAuthenticated && user?.role === 'Admin') {
+            console.log("admin loggedin");
             dispatch(fetchAllUsers());
         }
-    }, []);;
+    }, [isAuthenticated]);;
 
     const router = createBrowserRouter([
         {
