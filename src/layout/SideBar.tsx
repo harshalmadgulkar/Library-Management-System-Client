@@ -7,6 +7,7 @@ import logo_with_title from "@assets/logo-with-title.png";
 import { BookImage, BookOpenText, LayoutDashboardIcon, LogOut, Settings, SquareX, UserPlus, Users } from 'lucide-react';
 import { toggleAddNewAdminPopup, toggleSettingPopup } from '@store/slices/popUpSlice';
 import AddNewAdminPopup from '@popups/AddNewAdminPopup';
+import SettingPopup from '@popups/SettingPopup';
 
 interface SidebarProps {
     isSideBarOpen: boolean;
@@ -16,7 +17,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
     const dispatch = useAppDispatch();
-    const { addNewAdminPopup } = useAppSelector(state => state.popup);
+    const { addNewAdminPopup, settingPopup } = useAppSelector(state => state.popup);
     const {
         loading,
         error,
@@ -135,6 +136,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSideBarOpen, setIsSideBarOpen, setS
             </aside>
 
             {addNewAdminPopup && <AddNewAdminPopup />}
+            {settingPopup && <SettingPopup />}
         </>
     );
 };
